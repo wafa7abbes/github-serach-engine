@@ -14,12 +14,13 @@ function HomePage() {
     .subtract(1, "months")
     .format("dd DD MMMM, YYYY");
 
-  const getData = async () => {
+  const getData = () => {
     return fetch(
       `https://api.github.com/search/repositories?q=${selectedLanguage}+language:${selectedLanguage}+created:>${startingDate}&sort=stars&order=desc&per_page=3`
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log("data_________________", data);
         setItems([...items, ...data.items]);
         setDisplay(true);
       })
